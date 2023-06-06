@@ -1,0 +1,4 @@
+#define COMBO_COUNT 3
+#define TAPPING_TERM 225
+#define TAPPING_TERM_PER_KEY
+
