@@ -71,25 +71,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    KC_LCTL, KC_LCTL, KC_LALT, MO(_NUM),TD(LWRTD),KC_SPC,KC_SPC,TD(RSETD),KC_LEFT, KC_DOWN, PATHBACK, LGUI(KC_D)
+    KC_LCTL, KC_LCTL, KC_LALT, MO(_NUM),TD(LWRTD),KC_SPC,KC_SPC,TD(RSETD),KC_TAB, KC_DOWN, PATHBACK, LGUI(KC_D)
+),
+
+[_COLEMAK] = LAYOUT_planck_grid(
+    _______,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,_______,
+    _______,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,   _______,
+    _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 [_LOWER] = LAYOUT_planck_grid(
     KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
     KC_DEL,  PATHHOME, PATHBACK,   _______,   _______,   _______,   KC_LEFT,   KC_DOWN,    KC_UP,    KC_RGHT, KC_COLN, KC_PIPE,
     _______, _______,  _______,   _______,   _______,  _______,  _______,  _______, _______, _______, _______,  _______,
-    MO(_ADJUST), _______, _______, _______, _______, KC_UNDS, KC_UNDS,TILWM, _______,    KC_VOLD, KC_VOLU, QK_BOOT
+    MO(_ADJUST), TG(_COLEMAK), _______, _______, _______, KC_UNDS, KC_UNDS,TILWM, _______,    KC_VOLD, KC_VOLU, QK_BOOT
 ),
 
 [_RAISE] = LAYOUT_planck_grid(
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,    KC_LPRN, KC_RPRN, KC_BSPC,
-    KC_DEL,  KC_EQL,  KC_MINS, XXXXXXX, KC_PLUS, KC_F5,   KC_F6,   KC_MINS, KC_PIPE,  KC_LBRC, KC_RBRC, KC_BSLS,
+    KC_DEL,  KC_EQL,  KC_MINS, XXXXXXX, KC_PLUS, KC_F5,   KC_F6,   KC_PIPE, KC_MINS,  KC_LBRC, KC_RBRC, KC_BSLS,
     _______, XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_PERC, KC_LT , KC_GT, _______, _______,
     _______, _______, _______, _______, XXXXXXX, _______,_______, _______, _______, _______, _______, _______
 ),
 [_TILWM] = LAYOUT_planck_grid(
     _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-    _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, KC_H, KC_J,  KC_K,  KC_L, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______, _______, _______,
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX
 ),
@@ -131,12 +138,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 /*
-[_COLEMAK] = LAYOUT_planck_grid(
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
-    KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
-),
 */
 /* Dvorak
  * ,-----------------------------------------------------------------------------------.
