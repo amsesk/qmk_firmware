@@ -62,8 +62,7 @@ void x_finished (tap_dance_state_t *state, void *user_data) {
             layer_on(_LOWER);
             break;
         case DOUBLE_TAP:
-            register_code(KC_LSFT);
-            register_code(KC_6);
+            register_code(KC_TAB);
             break;
     }
 }
@@ -78,8 +77,7 @@ void x_reset (tap_dance_state_t *state, void *user_data) {
             layer_off(_LOWER);
             break;
         case DOUBLE_TAP:
-            unregister_code(KC_6);
-            unregister_code(KC_LSFT);
+            unregister_code(KC_TAB);
             break;
     }
     xtap_state.state = 0;
@@ -95,8 +93,7 @@ void RSETD_finished (tap_dance_state_t *state, void *user_data) {
             layer_on(_RAISE);
             break;
         case DOUBLE_TAP:
-            register_code(KC_LSFT);
-            register_code(KC_4);
+            register_code(KC_ESC);
             break;
     }
 }
@@ -110,8 +107,7 @@ void RSETD_reset (tap_dance_state_t *state, void *user_data) {
             layer_off(_RAISE);
             break;
         case DOUBLE_TAP:
-            unregister_code(KC_4);
-            unregister_code(KC_LSFT);
+            unregister_code(KC_ESC);
             break;
     }
     xtap_state.state = 0;
