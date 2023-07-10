@@ -71,12 +71,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    KC_LCTL, KC_LCTL, KC_LALT, KC_TAB,  TD(LWRTD),KC_SPC,KC_SPC,TD(RSETD),KC_RSFT, KC_NO, KC_NO, KC_RCTL
+    KC_LCTL, KC_LCTL, KC_LALT, MO(_NUM),  TD(LWRTD),KC_SPC,KC_SPC,TD(RSETD),KC_RSFT, KC_NO, KC_NO, KC_RCTL
 ),
 
 [_COLEMAK] = LAYOUT_planck_grid(
     _______,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,_______,
-    _______,  KC_A,    KC_R,    KC_S,    MT(MOD_LSFT, KC_T),    KC_D,    KC_H,    MT(MOD_LSFT, KC_N),    KC_E,    KC_I,    KC_O,   _______,
+    _______,  KC_A,    KC_R,    MT(MOD_LCTL, KC_S),    MT(MOD_LSFT, KC_T),    KC_D,    KC_H,    MT(MOD_LSFT, KC_N),    MT(MOD_RCTL, KC_E),    KC_I,    KC_O,   _______,
     _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_RAISE] = LAYOUT_planck_grid(
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,    KC_LPRN, KC_RPRN, KC_BSPC,
-    KC_DEL,  KC_EQL,  KC_MINS, XXXXXXX, KC_PLUS, KC_F5,   KC_F6,   KC_PIPE, KC_MINS,  KC_LBRC, KC_RBRC, KC_BSLS,
+    KC_DEL,  KC_EQL,  KC_PLUS, _______, _______, _______,   _______,   KC_MINS, KC_PIPE,  KC_LBRC, KC_RBRC, KC_BSLS,
     _______, XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_PERC, KC_LT , KC_GT, _______, _______,
     _______, _______, _______, _______, XXXXXXX, _______,_______, _______, _______, _______, _______, _______
 ),
