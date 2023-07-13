@@ -43,13 +43,13 @@ enum planck_keycodes {
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 
-const uint16_t PROGMEM p_bspc_pipe[] = {KC_P, KC_BSPC, COMBO_END};
-const uint16_t PROGMEM l_scln_dash[] = {KC_L, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM y_scln_pipe[] = {KC_Y, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM i_o_dash[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM o_p_bspc[] = {KC_O, KC_P, COMBO_END};
 const uint16_t PROGMEM a_s_esc[] = {KC_A, KC_S, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(p_bspc_pipe, KC_PIPE),
-    COMBO(l_scln_dash, KC_MINS),
+    COMBO(y_scln_pipe, KC_PIPE),
+    COMBO(i_o_dash, KC_MINS),
     COMBO(o_p_bspc, KC_BSPC),
     COMBO(a_s_esc, KC_ESC)
 };
