@@ -15,6 +15,7 @@
 enum layers {
     _QWERTY,
     _COLEMAK,
+    _COLEMAK_SPL,
     _TILWM,
     _LOWER,
     _RAISE,
