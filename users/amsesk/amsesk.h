@@ -13,9 +13,10 @@
 */
 
 enum layers {
-    _QWERTY,
     _COLEMAK,
+    _BEAKL8,
     _COLEMAK_SPL,
+    _QWERTY,
     _TILWM,
     _LOWER,
     _RAISE,
@@ -25,7 +26,7 @@ enum layers {
 };
 
 enum other_keycodes {
-    QWERTY = SAFE_RANGE,
+    COLEMAK = SAFE_RANGE,
     //LOWER,
     //RAISE,
     TILWM,
