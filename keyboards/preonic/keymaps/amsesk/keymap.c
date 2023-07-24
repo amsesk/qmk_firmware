@@ -16,6 +16,7 @@ combo_t key_combos[COMBO_COUNT] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //	[_BASE] = LAYOUT_ortho_5x12(KC_GRV, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL, KC_BSPC, KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSLS, KC_ESC, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_COLN, KC_QUOT, KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_ENT, KC_LCTL, FNKEY, KC_NO, NUMPAD, UPPER, KC_SPC, KC_BSPC, LOWER, KC_RSFT, LCTL(KC_D), LCTL(KC_U), LGUI(KC_D)),
+	/*
 	[_QWERTY] = LAYOUT_preonic_grid(
          KC_GRV    ,KC_1      ,KC_2      ,KC_3      ,KC_4      ,KC_5      ,KC_6      ,KC_7      ,KC_8      ,KC_9      ,KC_0      ,KC_BSPC
         ,KC_TAB    ,KC_Q      ,KC_W      ,KC_E      ,KC_R      ,KC_T      ,KC_Y      ,KC_U      ,KC_I      ,KC_O      ,KC_P      ,KC_BSLS
@@ -23,19 +24,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ,KC_LSFT   ,KC_Z      ,KC_X      ,KC_C      ,KC_V      ,KC_B      ,KC_N      ,KC_M      ,KC_COMM   ,KC_DOT    ,KC_SLSH   ,KC_ENT
         ,KC_LCTL   ,KC_NO     ,KC_LALT   ,MO(_NUM)  ,TD(LWRTD) ,KC_SPC    ,KC_BSPC   ,TD(RSETD)     ,KC_RSFT   ,LCTL(KC_D),LCTL(KC_U),LGUI(KC_D)
 	),
+	*/
     [_COLEMAK] = LAYOUT_preonic_grid(
-            KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_BSPC,
-            KC_TAB, KC_Q, KC_W, KC_F, KC_P, KC_G, KC_J, KC_L, KC_U, KC_Y, KC_SCLN, KC_DEL,
-            KC_ESC, KC_A, KC_R, MT(MOD_LCTL, KC_S), MT(MOD_LSFT, KC_T), KC_D, KC_H, MT(MOD_RSFT, KC_N), MT(MOD_RCTL, KC_E), KC_I, KC_O, KC_QUOT,
-            KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_K, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_ENT,
-            KC_LCTL, KC_LCTL, KC_LALT, KC_LGUI, TD(LWRTD) ,KC_SPC ,KC_SPC ,TD(RSETD), KC_LEFT, KC_DOWN, KC_UP, KC_RGHT),
+            KC_GRV,        KC_1,        KC_2,        KC_3,        KC_4,        KC_5,        KC_6,        KC_7,        KC_8,        KC_9,        KC_0,         KC_BSPC,
+            KC_TAB,        KC_Q,        KC_W,        KC_F,        KC_P,        KC_G,        KC_J,        KC_L,        KC_U,        KC_Y,        KC_SCLN,      KC_DEL,
+            KC_ESC,        KC_A,        KC_R,  MT(MOD_LCTL,KC_S), MT(MOD_LSFT,KC_T),  KC_D, KC_H, MT(MOD_RSFT,KC_N),  MT(MOD_RCTL, KC_E), KC_I, KC_O,         KC_QUOT,
+            KC_LSFT,       KC_Z,        KC_X,        KC_C,        KC_V,        KC_B,        KC_K,        KC_M,        KC_COMM,     KC_DOT,      KC_SLSH,      KC_ENT,
+            KC_LCTL,       KC_LCTL,     KC_LALT,    KC_LGUI,      TD(LWRTD),   KC_SPC,      KC_SPC,      TD(RSETD),   KC_LEFT,     KC_DOWN,     KC_UP,        KC_RGHT
+	    ),
+    [_BEAKL8] = LAYOUT_preonic_grid(
+            KC_GRV,        KC_1,        KC_2,        KC_3,        KC_4,        KC_5,        KC_6,        KC_7,        KC_8,        KC_9,        KC_0,         KC_BSPC,
+            KC_TAB,        KC_Q,        KC_Y,        KC_O,        KC_U,        KC_G,        KC_V,        KC_C,        KC_R,        KC_F,        KC_Z,         KC_DEL,
+            KC_ESC,        KC_K,        KC_H,  MT(MOD_LCTL,KC_E), MT(MOD_LSFT,KC_A),  KC_D, KC_DOT, MT(MOD_RSFT,KC_S),MT(MOD_RCTL, KC_T), KC_N, KC_B,         KC_QUOT,
+            KC_LSFT,       KC_J,        KC_SLSH,     KC_COMM,     KC_I,        KC_QUOT,     KC_W,        KC_M,        KC_L,        KC_P,        KC_X,         KC_ENT,
+            KC_LCTL,       KC_LCTL,     KC_LALT,    KC_LGUI,      TD(LWRTD),   KC_SPC,      KC_BSPC,     KC_RSFT, KC_LEFT,     KC_DOWN,     KC_UP,        KC_RGHT
+	    ),
 //	[2] = LAYOUT_ortho_5x12(KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_BSPC, KC_TAB, KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L, KC_DEL, KC_ESC, KC_A, KC_O, KC_E, KC_U, KC_I, KC_D, KC_H, KC_T, KC_N, KC_S, KC_SLSH, KC_LSFT, KC_SCLN, KC_Q, KC_J, KC_K, KC_X, KC_B, KC_M, KC_W, KC_V, KC_Z, KC_ENT, BL_STEP, KC_LCTL, KC_LALT, KC_LGUI, MO(3), KC_SPC, KC_SPC, MO(4), KC_LEFT, KC_DOWN, KC_UP, KC_RGHT),
 	[_LOWER] = LAYOUT_preonic_grid(
          KC_TILD   ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_BSPC
-        ,KC_DEL    ,KC_NO  ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_PIPE
-        ,KC_ESC    ,PATHHOME  ,PATHBACK     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_LEFT   ,KC_DOWN   ,KC_UP     ,KC_RGHT   ,KC_COLN   ,KC_DQUO
+        ,KC_DEL    ,KC_NO  ,KC_NO     ,KC_LBRC     ,KC_LPRN     ,KC_NO     ,KC_NO     ,KC_RPRN     ,KC_RBRC     ,KC_NO     ,KC_NO     ,KC_PIPE
+        ,KC_ESC    ,PATHHOME  ,PATHBACK     ,KC_PLUS     ,KC_EQL     ,KC_NO     ,KC_LEFT   ,KC_DOWN   ,KC_UP     ,KC_RGHT   ,KC_COLN   ,KC_DQUO
         ,KC_LSFT   ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_PERC   ,KC_LT     ,KC_GT     ,KC_QUES   ,KC_NO
-        ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_UNDS   ,MO(_TILWM)  ,KC_NO     ,KC_NO     ,KC_NO     ,MO(_ADJUST)
+        ,TO(_BEAKL8)     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_UNDS   ,MO(_TILWM)  ,KC_NO     ,KC_NO     ,KC_NO     ,MO(_ADJUST)
         ),
 
     [_TILWM] = LAYOUT_preonic_grid(
