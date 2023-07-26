@@ -16,10 +16,11 @@ enum layers {
     _COLEMAK,
     _BEAKL8,
     _COLEMAK_SPL,
-    _QWERTY,
-    _TILWM,
     _LOWER,
     _RAISE,
+    _QWERTY,
+    _TILWM,
+    _ARROWS,
     _ADJUST,
     _NUM,
     _FN
@@ -30,6 +31,7 @@ enum other_keycodes {
     //LOWER,
     //RAISE,
     TILWM,
+    ARROWS,
 	//BOOT,
 	//NUMPAD,
     //FNKEY,
@@ -55,6 +57,9 @@ enum {
 
 int cur_dance (tap_dance_state_t *state);
 
+void osmshift_capslock_finished (tap_dance_state_t *state, void *user_data);
+void osmshift_capslock_reset (tap_dance_state_t *state, void *user_data);
+
 //for the x tap dance. Put it here so it can be used in any keymap
 void x_finished (tap_dance_state_t *state, void *user_data);
 void x_reset (tap_dance_state_t *state, void *user_data);
@@ -68,6 +73,7 @@ void QUOT_reset (tap_dance_state_t *state, void *user_data);
 enum {
     LWRTD,
     RSETD,
+    SFTCAPS,
     QUOT,
 };
 

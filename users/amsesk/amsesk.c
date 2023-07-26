@@ -5,6 +5,7 @@ tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Caps Lock
     [LWRTD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, x_reset),
     [RSETD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, RSETD_finished, RSETD_reset),
+    [SFTCAPS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, osmshift_capslock_finished, osmshift_capslock_reset),
     [QUOT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, QUOT_finished, QUOT_reset),
 };
 
@@ -32,7 +33,7 @@ int cur_dance(tap_dance_state_t *state) {
         if (!state->pressed) {
            return DOUBLE_TAP;
         } else {
-            return 11;
+            return DOUBLE_HOLD;
         }
     } else {
         return 10;
@@ -44,6 +45,48 @@ static tap xtap_state = {
   .is_press_action = true,
   .state = 0
 };
+
+bool lgui_on = false;
+void osmshift_capslock_finished (tap_dance_state_t *state, void *user_data) {
+    xtap_state.state = cur_dance(state);
+    switch (xtap_state.state) {
+        case SINGLE_TAP: //instanalize an instance of 'tap' for the 'x' tap dance.
+            print("SINGLE_TAP, x_finished\n");
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            //clear_oneshot_layer_state(ONESHOT_PRESSED);
+            //set_oneshot_layer(_LOWER, ONESHOT_START);
+            //clear_oneshot_layer_state(ONESHOT_PRESSED);
+            break;
+            //layer_on(_UPPER);
+            //set_oneshot_layer(_UPPER, ONESHOT_START);
+            //waitingPostTap = true;
+            //break;
+        case SINGLE_HOLD:
+            print("HOLD_TAP, x_finished\n");
+            register_code(KC_LSFT);
+            break;
+        case DOUBLE_TAP:
+            register_code(KC_CAPS);
+            break;
+    }
+}
+void osmshift_capslock_reset (tap_dance_state_t *state, void *user_data) {
+    uprintf("xtap_state.state going into x_reset: %d\n", xtap_state.state);
+    switch (xtap_state.state) {
+        case SINGLE_TAP:
+            print("SINGLE_TAP, x_reset\n");
+            //clear_oneshot_mods();
+            break;
+        case SINGLE_HOLD:
+            print("SINGLE_HOLD, x_reset\n");
+            unregister_code(KC_LSFT);
+            break;
+        case DOUBLE_TAP:
+            unregister_code(KC_CAPS);
+            break;
+    }
+    xtap_state.state = 0;
+}
 
 void x_finished (tap_dance_state_t *state, void *user_data) {
     xtap_state.state = cur_dance(state);
@@ -62,7 +105,11 @@ void x_finished (tap_dance_state_t *state, void *user_data) {
             layer_on(_LOWER);
             break;
         case DOUBLE_TAP:
-            register_code(KC_TAB);
+            break;
+        case DOUBLE_HOLD:
+            register_code(KC_LGUI);
+            lgui_on = true;
+            layer_on(_TILWM);
             break;
     }
 }
@@ -77,7 +124,11 @@ void x_reset (tap_dance_state_t *state, void *user_data) {
             layer_off(_LOWER);
             break;
         case DOUBLE_TAP:
-            unregister_code(KC_TAB);
+            break;
+        case DOUBLE_HOLD:
+            unregister_code(KC_LGUI);
+            lgui_on = false;
+            layer_off(_TILWM);
             break;
     }
     xtap_state.state = 0;
@@ -171,11 +222,30 @@ enum returnAction process_macros(uint16_t keycode, keyrecord_t *record) {
         layer_off(_LOWER);
     }
     */
+    /*
+    const uint8_t osmods = get_oneshot_mods();
+    if ((osmods & MOD_BIT(KC_LSFT)) != MOD_BIT(KC_LSFT) && xtap_state.state == 0) {
+        uprintf("clearing layers with xtap_state.state = %d", xtap_state.state);
+        layer_clear();
+    }
+    */
 	switch (keycode) {
         case PATHBACK:
 			if(record->event.pressed) {
 				SEND_STRING("../");
 			}
+            break;
+        case ARROWS:
+			if(record->event.pressed) {
+                unregister_code(KC_LGUI);
+                lgui_on = false;
+                layer_on(_ARROWS);
+            } else {
+                if (IS_LAYER_ON(_TILWM)) {
+                    register_code(KC_LGUI);
+                }
+                layer_off(_ARROWS);
+            }
             break;
 		/*
         case NUMPAD:
