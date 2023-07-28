@@ -46,7 +46,6 @@ static tap xtap_state = {
   .state = 0
 };
 
-bool lgui_on = false;
 void osmshift_capslock_finished (tap_dance_state_t *state, void *user_data) {
     xtap_state.state = cur_dance(state);
     switch (xtap_state.state) {
@@ -108,7 +107,6 @@ void x_finished (tap_dance_state_t *state, void *user_data) {
             break;
         case DOUBLE_HOLD:
             register_code(KC_LGUI);
-            lgui_on = true;
             layer_on(_TILWM);
             break;
     }
@@ -121,13 +119,12 @@ void x_reset (tap_dance_state_t *state, void *user_data) {
             break;
         case SINGLE_HOLD:
             print("SINGLE_HOLD, x_reset\n");
-            layer_off(_LOWER);
+            layer_clear();
             break;
         case DOUBLE_TAP:
             break;
         case DOUBLE_HOLD:
             unregister_code(KC_LGUI);
-            lgui_on = false;
             layer_off(_TILWM);
             break;
     }
@@ -238,7 +235,6 @@ enum returnAction process_macros(uint16_t keycode, keyrecord_t *record) {
         case ARROWS:
 			if(record->event.pressed) {
                 unregister_code(KC_LGUI);
-                lgui_on = false;
                 layer_on(_ARROWS);
             } else {
                 if (IS_LAYER_ON(_TILWM)) {
