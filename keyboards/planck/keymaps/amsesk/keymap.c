@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  MT(MOD_LCTL, KC_A),    KC_R,    KC_S, KC_T,    KC_D,    KC_H,  KC_N,    KC_E,    KC_I,    MT(MOD_RCTL,KC_O),   KC_QUOT,
 
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
-    KC_LCTL, KC_LCTL, KC_LALT, KC_NO,  TD(LWRTD),MT(MOD_LSFT,KC_SPC),TD(SFTCAPS),TD(RSETD),TILWM, KC_NO, KC_NO, KC_RCTL
+    KC_LCTL, KC_LCTL, KC_LALT, TD(SFTCAPS),  TD(LWRTD), KC_SPC, KC_NO,  TD(RSETD),TD(SFTCAPS), KC_NO, KC_NO, KC_RCTL
 ),
 [_BEAKL8] = LAYOUT_planck_grid(
     KC_TAB,    KC_Q,    KC_Y,    KC_O,    KC_U,    KC_G,    KC_V,    KC_C,    KC_R,    KC_F,    KC_Z,     KC_BSPC,
@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL,   KC_LCTL, KC_LALT, KC_LGUI, MO(_LOWER),KC_SPC, KC_BSPC, KC_RSFT, TILWM, KC_DOWN, KC_UP,    KC_RGHT
     ),
 [_LOWER] = LAYOUT_planck_grid(
-    KC_GRV,  _______,   _______,   _______,    TO(_ARROWS), _______,   _______,    KC_7,    KC_8,    KC_9,  KC_COLN, _______,
+    KC_TILD,  _______,   _______,   _______,    MO(_ARROWS), _______,   _______,    KC_7,    KC_8,    KC_9,  KC_COLN, _______,
     _______,  KC_EQL,   KC_PLUS,   KC_LPRN,    KC_RPRN,    KC_DOWN,   KC_UP,      KC_4,    KC_5,    KC_6,   KC_COLN, KC_DQUO,
     _______, _______,  _______,   KC_LBRC,  KC_RBRC ,  _______,  _______,         KC_1,    KC_2,    KC_3,   _______, KC_BSLS,
     MO(_ADJUST), TG(_BEAKL8), _______, _______, _______, KC_UNDS, KC_UNDS,        KC_0,    KC_0,    _______,_______, QK_BOOT
@@ -104,8 +104,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
 [_RAISE] = LAYOUT_planck_grid(
-    XXXXXXX, KC_TILD, KC_GRV, KC_ASTR,   KC_AMPR, KC_AMPR,  XXXXXXX, KC_GRV, XXXXXXX,   KC_LPRN, KC_RPRN, _______,
-    KC_DEL,  KC_EQL,  KC_CIRC, KC_PERC, KC_DLR, KC_DOWN,  _______, KC_MINS, KC_PIPE, KC_LBRC, KC_RBRC, _______,
+    XXXXXXX, KC_TILD, KC_GRV, KC_ASTR,   KC_AMPR, KC_AMPR,  XXXXXXX, KC_MINS, KC_PIPE,   KC_LPRN, KC_RPRN, _______,
+    KC_DEL,  KC_EQL,  KC_CIRC, KC_PERC, KC_DLR, KC_DOWN,  _______, KC_GRV, XXXXXXX, KC_LBRC, KC_RBRC, _______,
     _______, XXXXXXX, KC_HASH, KC_AT,   KC_EXLM,  XXXXXXX,  XXXXXXX,  KC_PERC, KC_LT , KC_GT, _______, _______,
     _______, _______, _______, _______, XXXXXXX, KC_LSFT,KC_NO, _______, _______, _______, _______, _______
 ),

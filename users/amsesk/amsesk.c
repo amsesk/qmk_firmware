@@ -135,16 +135,15 @@ void RSETD_finished (tap_dance_state_t *state, void *user_data) {
     xtap_state.state = cur_dance(state);
     switch (xtap_state.state) {
         case SINGLE_TAP: //instanalize an instance of 'tap' for the 'x' tap dance.
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            set_oneshot_layer(_RAISE, ONESHOT_START);
+            clear_oneshot_layer_state(ONESHOT_PRESSED);
             break;
         case SINGLE_HOLD:
             layer_on(_RAISE);
             break;
         case DOUBLE_TAP:
-            register_code(KC_CAPS);
             break;
         case DOUBLE_HOLD:
-            register_code(KC_RSFT);
             break;
     }
 }
