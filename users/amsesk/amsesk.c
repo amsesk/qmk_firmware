@@ -156,10 +156,8 @@ void RSETD_reset (tap_dance_state_t *state, void *user_data) {
             layer_off(_RAISE);
             break;
         case DOUBLE_TAP:
-            unregister_code(KC_CAPS);
             break;
         case DOUBLE_HOLD:
-            unregister_code(KC_RSFT);
             break;
     }
     xtap_state.state = 0;

@@ -43,8 +43,8 @@ enum planck_keycodes {
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 
-const uint16_t PROGMEM n_e_pipe[] = {KC_N, KC_E, COMBO_END};
-const uint16_t PROGMEM i_o_dash[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM n_e_pipe[] = {KC_S, KC_T, COMBO_END};
+const uint16_t PROGMEM i_o_dash[] = {KC_N, KC_E, COMBO_END};
 const uint16_t PROGMEM y_scln_bspc[] = {KC_Y, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM a_r_esc[] = {KC_A, KC_R, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TILD,  _______,   _______,   _______,    MO(_ARROWS), _______,   _______,    KC_7,    KC_8,    KC_9,  KC_COLN, _______,
     _______,  KC_EQL,   KC_PLUS,   KC_LPRN,    KC_RPRN,    KC_DOWN,   KC_UP,      KC_4,    KC_5,    KC_6,   KC_COLN, KC_DQUO,
     _______, _______,  _______,   KC_LBRC,  KC_RBRC ,  _______,  _______,         KC_1,    KC_2,    KC_3,   _______, KC_BSLS,
-    MO(_ADJUST), TG(_BEAKL8), _______, _______, _______, KC_UNDS, KC_UNDS,        KC_0,    KC_0,    _______,_______, QK_BOOT
+    MO(_ADJUST), TG(_BEAKL8), _______, _______, TG(_LOWER), KC_UNDS, KC_UNDS,        KC_0,    KC_0,    _______,_______, QK_BOOT
 ),
 /*
 [_LOWER] = LAYOUT_planck_grid(
@@ -104,10 +104,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
 [_RAISE] = LAYOUT_planck_grid(
-    XXXXXXX, KC_TILD, KC_GRV, KC_ASTR,   KC_AMPR, KC_AMPR,  XXXXXXX, KC_MINS, KC_PIPE,   KC_LPRN, KC_RPRN, _______,
+    XXXXXXX, KC_TILD, KC_GRV, KC_ASTR,   KC_AMPR, KC_AMPR,  XXXXXXX, KC_LCBR, KC_RCBR,   KC_LPRN, KC_RPRN, _______,
     KC_DEL,  KC_EQL,  KC_CIRC, KC_PERC, KC_DLR, KC_DOWN,  _______, KC_GRV, XXXXXXX, KC_LBRC, KC_RBRC, _______,
     _______, XXXXXXX, KC_HASH, KC_AT,   KC_EXLM,  XXXXXXX,  XXXXXXX,  KC_PERC, KC_LT , KC_GT, _______, _______,
-    _______, _______, _______, _______, XXXXXXX, KC_LSFT,KC_NO, _______, _______, _______, _______, _______
+    _______, _______, _______, _______, XXXXXXX, KC_LSFT,KC_NO, TG(_RAISE) , _______, _______, _______, _______
 ),
 [_TILWM] = LAYOUT_planck_grid(
     _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
