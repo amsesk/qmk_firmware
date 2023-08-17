@@ -65,7 +65,7 @@ void osmshift_capslock_finished (tap_dance_state_t *state, void *user_data) {
             register_code(KC_LSFT);
             break;
         case DOUBLE_TAP:
-            register_code(KC_CAPS);
+            //register_code(KC_CAPS);
             break;
     }
 }
@@ -81,7 +81,7 @@ void osmshift_capslock_reset (tap_dance_state_t *state, void *user_data) {
             unregister_code(KC_LSFT);
             break;
         case DOUBLE_TAP:
-            unregister_code(KC_CAPS);
+            //unregister_code(KC_CAPS);
             break;
     }
     xtap_state.state = 0;
