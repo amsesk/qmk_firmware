@@ -234,17 +234,6 @@ enum returnAction process_macros(uint16_t keycode, keyrecord_t *record) {
 				SEND_STRING("../");
 			}
             break;
-        case ARROWS:
-			if(record->event.pressed) {
-                unregister_code(KC_LGUI);
-                layer_on(_ARROWS);
-            } else {
-                if (IS_LAYER_ON(_TILWM)) {
-                    register_code(KC_LGUI);
-                }
-                layer_off(_ARROWS);
-            }
-            break;
 		/*
         case NUMPAD:
 			if (record->event.pressed) {
