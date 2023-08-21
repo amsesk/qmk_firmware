@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	*/
     [_COLEMAK] = LAYOUT_preonic_grid(
     KC_GRV,        KC_1,        KC_2,        KC_3,        KC_4,        KC_5,        KC_6,        KC_7,        KC_8,        KC_9,        KC_0,         KC_BSPC,
-    KC_TAB,  KC_Q,    MT(MOD_LGUI, KC_W),    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    MT(MOD_RGUI, KC_Y),    KC_SCLN, KC_BSPC,
+    KC_TAB,  KC_Q,    MT(MOD_LGUI, KC_W),    KC_F,    LT(_ARROWS, KC_P),    KC_G,    KC_J,    KC_L,    KC_U,    MT(MOD_RGUI, KC_Y),    KC_SCLN, KC_BSPC,
     KC_ESC,  MT(MOD_LCTL, KC_A),    KC_R,    KC_S, KC_T,    KC_D,    KC_H,  KC_N,    KC_E,    KC_I,    MT(MOD_RCTL, KC_O),   KC_QUOT,
 
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
@@ -49,8 +49,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //	[2] = LAYOUT_ortho_5x12(KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_BSPC, KC_TAB, KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L, KC_DEL, KC_ESC, KC_A, KC_O, KC_E, KC_U, KC_I, KC_D, KC_H, KC_T, KC_N, KC_S, KC_SLSH, KC_LSFT, KC_SCLN, KC_Q, KC_J, KC_K, KC_X, KC_B, KC_M, KC_W, KC_V, KC_Z, KC_ENT, BL_STEP, KC_LCTL, KC_LALT, KC_LGUI, MO(3), KC_SPC, KC_SPC, MO(4), KC_LEFT, KC_DOWN, KC_UP, KC_RGHT),
 	[_LOWER] = LAYOUT_preonic_grid(
          KC_TILD   ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_NO     ,KC_BSPC,
-    KC_GRV,  _______,   _______,   _______,  MO(_ARROWS), _______,   _______,    KC_7,    KC_8,    KC_9,  KC_COLN, _______,
-    _______,  KC_EQL,   KC_PLUS,   KC_LPRN,    KC_RPRN,    KC_DOWN,   KC_UP,      KC_4,    KC_5,    KC_6,   KC_COLN, KC_DQUO,
+    KC_GRV,  _______,   _______,   _______,  XXXXXXX, _______,   _______,    KC_7,    KC_8,    KC_9,  KC_COLN, _______,
+    _______,  PATHHOME, PATHBACK,  KC_LPRN,    KC_RPRN,    KC_DOWN,   KC_UP,      KC_4,    KC_5,    KC_6,   KC_COLN, KC_DQUO,
     _______, _______,  _______,   KC_LBRC,  KC_RBRC ,  _______,  _______,         KC_1,    KC_2,    KC_3,   _______, KC_BSLS,
     MO(_ADJUST), TG(_BEAKL8), _______, _______, _______, KC_UNDS, KC_UNDS,        KC_0,    KC_0,    _______,_______, QK_BOOT
 ),
