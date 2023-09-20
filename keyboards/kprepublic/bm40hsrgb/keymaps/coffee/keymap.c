@@ -55,6 +55,26 @@ static int current_accel = 0;
     #define MCR_SWT KC_NO
 #endif
 
+#ifdef TURBO_ENABLE
+static bool turbo_active = false; // Only changed by TRBO_ST
+static uint16_t turbo_keycode = KC_NO; // turbo_active can't be true if this is KC_NO
+static bool turbo_key_pressed = false;
+static bool turbo_keycode_selecting = false; // Determine new keycode or delay mode switch
+static bool turbo_ms_delay_direction = true; // True is raise the delay, false is lower it
+static uint16_t turbo_ms_delay_direction_indicator = 0;
+static uint16_t turbo_ms_delay = 100; // Start at sending keycodes 10 times a second
+static uint16_t turbo_timer; // Changed semi automatically
+/*
+ * Because the KC's are wrapped in `LT()` they won't be interpreted as KC_NO or KC_TRNS
+ * Instead they'll just be like any other custom KC which will let me use them how I want
+*/
+#define TRBO_ST LT(_CTR, KC_NO  )
+#define TRBO_TI LT(_CTR, KC_TRNS)
+#else
+#define TRBO_ST KC_NO
+#define TRBO_TI KC_NO
+#endif
+
 const uint16_t PROGMEM keymaps[_END][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT_planck_mit(
         KC_ESC , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC,
@@ -72,7 +92,7 @@ const uint16_t PROGMEM keymaps[_END][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, RGB_SPD, RGB_VAI, RGB_SPI, RGB_HUI, RGB_SAI, XXXXXXX, XXXXXXX, KC_VOLU, XXXXXXX, XXXXXXX, MCR_REC,
         XXXXXXX, RGB_RMOD,RGB_VAD, RGB_MOD, RGB_HUD, RGB_SAD, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, MCR_PLY,
         XXXXXXX, XXXXXXX, RGB_TOG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD, XXXXXXX, XXXXXXX, MCR_SWT,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      TOG_MSE,     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+        XXXXXXX, XXXXXXX, XXXXXXX, TRBO_TI, TRBO_ST,      TOG_MSE,     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     )
     #ifdef MOUSEKEY_ENABLE
     ,[_MSE] = LAYOUT_planck_mit(
@@ -113,29 +133,69 @@ const uint16_t PROGMEM keymaps[_END][MATRIX_ROWS][MATRIX_COLS] = {
 
                 uint8_t pos = ((uint8_t*)g_led_config.matrix_co)[i];
 
-                CHECK_LED(); // Check LED before moving on
-                uint16_t KC = pgm_read_word(&((uint16_t*)keymaps)[(LAYER_SIZE * LAYER) + i]);
+            case MCR_REC:
+                if (RECORDING) { RGB_MATRIX_INDICATOR_SET_COLOR(pos, BRIGHTNESS, 0, 0); }
+                break;
+            #endif // DYNAMIC_MACRO_ENABLE
 
-                if (KC == KC_NO) {
-                    RGB_MATRIX_INDICATOR_SET_COLOR(pos, 0, 0, 0 );
-                }
-
-                #ifdef DYNAMIC_MACRO_ENABLE
-                    else if (KC == MCR_SWT) {
-                        if (!MACRO1) {
-                            RGB_MATRIX_INDICATOR_SET_COLOR(pos, 0, DimmedMax, DimmedMax);
-                        }
-                    } else if (KC == MCR_REC) {
-                        if (RECORDING) {
-                            RGB_MATRIX_INDICATOR_SET_COLOR(pos, DimmedMax, 0, 0);
+            #ifdef TURBO_ENABLE
+            case TRBO_ST:
+                if (turbo_keycode_selecting) {
+                    RGB_MATRIX_INDICATOR_SET_COLOR(pos, BRIGHTNESS, BRIGHTNESS, BRIGHTNESS);
+                } else {
+                    if (turbo_active) {
+                        if (turbo_key_pressed) {
+                            RGB_MATRIX_INDICATOR_SET_COLOR(pos, BRIGHTNESS, BRIGHTNESS, BRIGHTNESS);
+                        } else {
+                            RGB_MATRIX_INDICATOR_SET_COLOR(pos, 0, 0, 0);
                         }
                     }
-                #endif
+                }
+                break;
 
-            }
+            case TRBO_TI:
+                if (turbo_ms_delay_direction_indicator != 0) {
+                    uint8_t time = timer_elapsed(turbo_ms_delay_direction_indicator) / 200;
+                    if (time > 0) {
+                        if ((time % 2) == 1) {
+                            if (turbo_ms_delay_direction) {
+                                RGB_MATRIX_INDICATOR_SET_COLOR(pos, 0, BRIGHTNESS, 0);
+                            } else {
+                                RGB_MATRIX_INDICATOR_SET_COLOR(pos, BRIGHTNESS, 0, 0);
+                            }
+                        } else {
+                            RGB_MATRIX_INDICATOR_SET_COLOR(pos, 0, 0, 0);
+                        }
+                        if (time >= 6) {
+                            turbo_ms_delay_direction_indicator = 0;
+                        }
+                    }
+                }
+                break;
+            #endif
+
         }
     return false;
     }
+#endif
+
+#ifdef TURBO_ENABLE
+void housekeeping_task_user(void) {
+    if (turbo_active) {
+        if (turbo_key_pressed) {
+            if (timer_elapsed(turbo_timer) > turbo_ms_delay) {
+                unregister_code(turbo_keycode);
+                turbo_key_pressed = false;
+                turbo_timer = timer_read();
+            }
+        } else {
+            if (timer_elapsed(turbo_timer) > (turbo_ms_delay / 2)) {
+                register_code(turbo_keycode);
+                turbo_key_pressed = true;
+            }
+        }
+    }
+}
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -158,6 +218,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         keycode = KC_ACL0 + current_accel;
         action_t mousekey_action = action_for_keycode(keycode);
         process_action(record, mousekey_action);
+    }
+    #endif
+
+    #ifdef TURBO_ENABLE
+    if (record->event.pressed) {
+        if (turbo_keycode_selecting) {
+            if (IS_BASIC_KEYCODE(keycode)    ||
+                IS_MODIFIER_KEYCODE(keycode) ||
+                IS_JOYSTICK_KEYCODE(keycode) ||
+                IS_MOUSE_KEYCODE(keycode))
+            {
+                unregister_code(turbo_keycode);
+                turbo_key_pressed = false;
+                turbo_keycode = keycode;
+                turbo_keycode_selecting = false;
+            }
+        }
     }
     #endif
 
@@ -193,6 +270,46 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     }
                 }
                 return false;
+        #endif
+
+        #ifdef TURBO_ENABLE
+        case TRBO_ST:
+            if (record->event.pressed) {
+                if (!record->tap.count) {
+                    turbo_keycode_selecting = !turbo_keycode_selecting;
+                } else {
+                    if (turbo_keycode != KC_NO) {
+                        if (!turbo_active) {
+                            turbo_keycode_selecting = false;
+                            turbo_active = true;
+                        } else {
+                            unregister_code(turbo_keycode);
+                            turbo_key_pressed = false;
+                            turbo_active = false;
+                        }
+                    }
+                }
+            }
+            return false;
+
+        case TRBO_TI:
+            if (record->event.pressed) {
+                if (!record->tap.count) {
+                    turbo_ms_delay_direction = !turbo_ms_delay_direction;
+                    turbo_ms_delay_direction_indicator = timer_read();
+                } else {
+                    if (turbo_ms_delay_direction)
+                        turbo_ms_delay += 20;
+                    else
+                        turbo_ms_delay -= 20;
+
+                    if (turbo_ms_delay > 500) // half a second
+                        turbo_ms_delay = 500;
+                    if (turbo_ms_delay < 60) // Around 16 times a second
+                        turbo_ms_delay = 60;
+                }
+            }
+            return false;
         #endif
 
         default:
