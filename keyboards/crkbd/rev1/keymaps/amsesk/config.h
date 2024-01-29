@@ -24,9 +24,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Select hand configuration */
 
-#define MASTER_LEFT
+#define MASTER_RIGHT
 // #define MASTER_RIGHT
 // #define EE_HANDS
+
+#define SPLIT_LAYER_STATE_ENABLE
+
+
+#ifdef OLED_ENABLE
+    #define OLED_FONT_END 223
+    #define OLED_FONT_WIDTH 6
+    #define OLED_FONT_HEIGHT 8
+#endif
 
 //#define QUICK_TAP_TERM 0
 //#define TAPPING_TERM 100
