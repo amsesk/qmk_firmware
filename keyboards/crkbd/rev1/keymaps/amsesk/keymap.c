@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LSFT,   MO(_LOWER),  KC_SPC,     KC_NO,   MO(_RAISE), KC_RSFT
+                                          KC_LSFT,   MO(1),  KC_SPC,     KC_UNDS,   MO(2), KC_RSFT
 
                                       //`--------------------------'  `--------------------------'
 
@@ -63,9 +63,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB, XXXXXXX, KC_AMPR,   KC_ASTR, XXXXXXX,  XXXXXXX,                      KC_CIRC, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, XXXXXXX, KC_CIRC, KC_PERC, KC_DLR, XXXXXXX,                      KC_MINS,  KC_LCBR, KC_RCBR, XXXXXXX, KC_BSLS,  KC_GRV,
+      KC_LCTL, XXXXXXX, KC_CIRC, KC_PERC, KC_DLR, XXXXXXX,                      KC_MINS,  KC_LCBR, KC_RCBR, XXXXXXX, KC_PIPE,  KC_BSLS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, KC_HASH, KC_AT, KC_EXLM, XXXXXXX,                      KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TILD,
+      KC_LSFT, XXXXXXX, KC_HASH, KC_AT, KC_EXLM, XXXXXXX,                      KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_NO, KC_TILD,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI,   KC_NO,  KC_UNDS,     KC_ENT, _______, KC_RALT
                                       //`--------------------------'  `--------------------------'
