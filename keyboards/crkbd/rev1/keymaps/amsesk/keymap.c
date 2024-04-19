@@ -35,7 +35,7 @@ enum keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAK] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    LGUI_T(KC_W),    KC_F,    KC_P,    KC_G,                 KC_J,    KC_L,    KC_U,    RGUI_T(KC_Y),   KC_SCLN,  KC_BSPC,
+       KC_TAB,    LALT_T(KC_Q),    LGUI_T(KC_W),    KC_F,    KC_P,    KC_G,                 KC_J,    KC_L,    KC_U,    RGUI_T(KC_Y),   RALT_T(KC_SCLN),  KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       LCTL_T(KC_ESC), KC_A,KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,   KC_O,   RCTL_T(KC_QUOT),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
